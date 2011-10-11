@@ -144,7 +144,8 @@ public class GenericUDAFSortedArraySet extends AbstractGenericUDAFResolver {
     public Object terminatePartial(AggregationBuffer agg) throws HiveException {
       MkArrayAggregationBuffer myagg = (MkArrayAggregationBuffer) agg;
       ArrayList<Object> ret = new ArrayList<Object>(myagg.container.size());
-      ret.addAll(myagg.container);
+      for(Object o : myagg.container)
+    	  ret.add(((Text)o).toString());
       return ret;
     }
 
